@@ -8,7 +8,7 @@ public interface ISystemControlService extends IService<SystemControl> {
     /**
      * Create system control by name
      * @param name system control name
-     * @since 08/09/2021
+     * @since 08/30/2023
      */
     void createSystemControlByName(String name, Boolean status);
 }

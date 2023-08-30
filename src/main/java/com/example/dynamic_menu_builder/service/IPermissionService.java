@@ -13,7 +13,7 @@ public interface IPermissionService extends IService<Permission> {
      * @param name permission name
      * @exception RuntimeException if create permission failed
      * @exception DuplicatedDataException if permission name already exists
-     * @since 08/09/2021
+     * @since 08/30/2023
      */
     void createPermissionByName(String name);
 
@@ -21,7 +21,7 @@ public interface IPermissionService extends IService<Permission> {
      * Create permission by name batch
      * @param names permission names
      * @exception RuntimeException if create permission batch failed
-     * @since 08/09/2021
+     * @since 08/30/2023
      */
     void createPermissionByNameBatch(List<String> names);
 }

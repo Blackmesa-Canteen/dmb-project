@@ -12,7 +12,7 @@ public class PaginationConfig {
     /**
      * Mybatis plus interceptor:
      * - Pagination: supports postgresql
-     * @since 08/09/2021
+     * @since 08/30/2023
      */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {

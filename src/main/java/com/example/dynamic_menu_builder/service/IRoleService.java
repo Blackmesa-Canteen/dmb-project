@@ -13,7 +13,7 @@ public interface IRoleService extends IService<Role> {
      * @param name role name
      * @exception RuntimeException if create permission failed
      * @exception DuplicatedDataException if permission name already exists
-     * @since 08/09/2021
+     * @since 08/30/2023
      */
     void createRoleByName(String name);
 
@@ -21,7 +21,7 @@ public interface IRoleService extends IService<Role> {
      * Create role by name batch
      * @param names role names
      * @exception RuntimeException if create permission batch failed
-     * @since 08/09/2021
+     * @since 08/30/2023
      */
     void crateRoleByNameBatch(List<String> names);
 }

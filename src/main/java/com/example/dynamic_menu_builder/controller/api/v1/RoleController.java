@@ -44,7 +44,7 @@ public class RoleController {
      *
      * @param page page number
      * @param size page size
-     * @since 08/09/2021
+     * @since 08/30/2023
      */
     @GetMapping("/")
     @ApiOperation(value = "List all roles by page")
@@ -62,7 +62,7 @@ public class RoleController {
     /**
      * Create role by name
      *
-     * @since 08/09/2021
+     * @since 08/30/2023
      */
     @PostMapping("/")
     @ApiOperation(value = "Create role")
@@ -75,7 +75,7 @@ public class RoleController {
     /**
      * Create role by name batch
      *
-     * @since 08/09/2021
+     * @since 08/30/2023
      */
     @PostMapping("/batch")
     @ApiOperation(value = "Create role by name batch")
