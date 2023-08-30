@@ -1,9 +1,13 @@
 package com.example.dynamic_menu_builder.model.param;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import jakarta.validation.constraints.NotNull;
 
+@ApiModel(description = "Parameters required for creating a role.")
 public class CreateRoleParam {
 
+    @ApiModelProperty(value = "Name of the role", required = true, example = "ROLE_1")
     @NotNull(message = "role name cannot be null")
     String name;
 
