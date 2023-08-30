@@ -1,50 +1,44 @@
--- Create the user table if not exists
-CREATE TABLE IF NOT EXISTS t_user (
-                                      id SERIAL PRIMARY KEY,
-                                      username VARCHAR(255),
-    password VARCHAR(255),
-    role_id BIGINT,
-    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-    );
-
--- Create the role table if not exists
-CREATE TABLE IF NOT EXISTS t_role (
-                                      id SERIAL PRIMARY KEY,
-                                      name VARCHAR(255),
-    description TEXT,
-    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-    );
-
--- Create the permission table if not exists
-CREATE TABLE IF NOT EXISTS t_permission (
-                                            id SERIAL PRIMARY KEY,
-                                            name VARCHAR(255),
-    description TEXT,
-    role_id BIGINT REFERENCES t_role(id),
-    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-    );
-
--- Create the menu table if not exists
+-- Create Menu table
 CREATE TABLE IF NOT EXISTS t_menu (
-                                      id SERIAL PRIMARY KEY,
-                                      name VARCHAR(255),
-    parent_id BIGINT REFERENCES t_menu(id),
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    name VARCHAR(255),
+    parent_id BIGINT,
     permission_name_required VARCHAR(255),
-    system_status_name_required VARCHAR(255),
-    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-    );
+    system_control_name_required VARCHAR(255)
+);
 
--- Create the system status table if not exists
-CREATE TABLE IF NOT EXISTS t_system_status (
-                                               id SERIAL PRIMARY KEY,
-                                               name VARCHAR(255),
-    status BOOLEAN,
-    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-    );
+-- Create Permission table
+CREATE TABLE IF NOT EXISTS t_permission (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    name VARCHAR(255)
+);
 
--- Optional: Indexes, constraints, etc. can be added
+-- Create Role table
+CREATE TABLE IF NOT EXISTS t_role (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    name VARCHAR(255)
+);
+
+-- Create RolePermission table
+CREATE TABLE IF NOT EXISTS t_role_permission (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    role_id BIGINT,
+    permission_id BIGINT
+);
+
+-- Create SystemControl table
+CREATE TABLE IF NOT EXISTS t_system_control (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    name VARCHAR(255),
+    status BOOLEAN
+);

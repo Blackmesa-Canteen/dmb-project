@@ -17,15 +17,15 @@ services:
 
   db:
     image: postgres:13
-    container_name: your-postgres-container
+    container_name: dynamic_menu_builder_postgres_db
     environment:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     ports:
-      - "5432:5432"
+      - "${POSTGRES_PORT}:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_dynamic_menu_data:/var/lib/postgresql/data
 
 volumes:
-  postgres_data:
+  postgres_dynamic_menu_data:

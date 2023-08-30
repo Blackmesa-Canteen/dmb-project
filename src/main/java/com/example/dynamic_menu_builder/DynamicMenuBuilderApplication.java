@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("dynamic_menu_builder.mapper")
+@MapperScan("com.example.dynamic_menu_builder.mapper")
 public class DynamicMenuBuilderApplication {
 
     public static void main(String[] args) {
