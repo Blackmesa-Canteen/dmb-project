@@ -29,6 +29,17 @@ public class RoleController {
     }
 
     /**
+     * get role by id
+     */
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Get role by id")
+    @ApiResponse(code = 200, message = "Example response: {'code': 200, 'msg': 'ok', 'data': {...}}")
+    public R getRoleById(@PathVariable(value = "id") Long id) {
+        Role role = roleService.getById(id);
+        return R.ok().put("data", role);
+    }
+
+    /**
      * list all roles by page
      *
      * @param page page number
@@ -71,6 +82,17 @@ public class RoleController {
     @ApiResponse(code = 200, message = "OK", response = R.class)
     public R crateRoleByNameBatch(@Valid @RequestBody CreateRoleBatchParam param) {
         roleService.crateRoleByNameBatch(param.getNames());
+        return R.ok();
+    }
+
+    /**
+     * delete role by id
+     */
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "Delete role by id")
+    @ApiResponse(code = 200, message = "OK", response = R.class)
+    public R deleteRoleById(@PathVariable(value = "id") Long id) {
+        roleService.removeById(id);
         return R.ok();
     }
 }

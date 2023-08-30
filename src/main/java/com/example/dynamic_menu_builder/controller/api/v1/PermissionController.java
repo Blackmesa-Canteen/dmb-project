@@ -28,6 +28,17 @@ public class PermissionController {
     }
 
     /**
+     * get permission by id
+     */
+    @GetMapping("/{id}")
+    @ApiOperation(value = "Get permission by id")
+    @ApiResponse(code = 200, message = "Example response: {'code': 200, 'msg': 'ok', 'data': {...}}")
+    public R getPermissionById(@PathVariable(value = "id") Long id) {
+        Permission permission = permissionService.getById(id);
+        return R.ok().put("data", permission);
+    }
+
+    /**
      * list all permissions by page
      * @param page page number
      * @param size page size
@@ -64,6 +75,17 @@ public class PermissionController {
     @ApiResponse(code = 200, message = "OK", response = R.class)
     public R createPermissionBatch(@Valid @RequestBody CreatePermissionBatchParam param) {
         permissionService.createPermissionByNameBatch(param.getNames());
+        return R.ok();
+    }
+
+    /**
+     * delete permission by id
+     */
+    @DeleteMapping("/{id}")
+    @ApiOperation(value = "Delete permission by id")
+    @ApiResponse(code = 200, message = "OK", response = R.class)
+    public R deletePermissionById(@PathVariable(value = "id") Long id) {
+        permissionService.removeById(id);
         return R.ok();
     }
 }
