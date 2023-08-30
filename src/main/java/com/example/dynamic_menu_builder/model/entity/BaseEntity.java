@@ -9,7 +9,7 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class BaseEntity implements Serializable {
+public abstract class BaseEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
