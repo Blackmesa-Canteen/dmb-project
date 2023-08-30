@@ -3,8 +3,8 @@ package com.example.dynamic_menu_builder.model.param;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import jakarta.validation.constraints.NotNull;
 
+import javax.validation.constraints.NotNull;
 import java.util.Map;
 
 

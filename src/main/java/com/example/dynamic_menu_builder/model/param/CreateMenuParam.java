@@ -2,7 +2,8 @@ package com.example.dynamic_menu_builder.model.param;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import jakarta.validation.constraints.NotNull;
+
+import javax.validation.constraints.NotNull;
 
 @ApiModel(description = "Parameters required for creating a menu.")
 public class CreateMenuParam {
