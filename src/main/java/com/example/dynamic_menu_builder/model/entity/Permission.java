@@ -13,16 +13,8 @@ import io.swagger.annotations.ApiModelProperty;
 public class Permission extends BaseEntity {
 
     @TableField(value = "name")
-    @ApiModelProperty(value = "Name of the permission", example = "READ")
+    @ApiModelProperty(value = "Name of the permission", example = "PERMISSION_6")
     private String name;
-
-    @TableField(value = "description")
-    @ApiModelProperty(value = "Description of the permission", example = "Allows read access")
-    private String description;
-
-    @TableField(value = "role_id")
-    @ApiModelProperty(value = "role id", example = "1")
-    private Long roleId;
 
     public Permission() {
     }
@@ -37,21 +29,5 @@ public class Permission extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Long getRoleId() {
-        return roleId;
-    }
-
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
     }
 }

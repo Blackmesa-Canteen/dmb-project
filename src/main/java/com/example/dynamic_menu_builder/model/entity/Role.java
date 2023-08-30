@@ -13,12 +13,8 @@ import io.swagger.annotations.ApiModelProperty;
 public class Role extends BaseEntity {
 
     @TableField(value = "name")
-    @ApiModelProperty(value = "Name of the role", example = "Admin")
+    @ApiModelProperty(value = "Name of the role", example = "User")
     private String name;
-
-    @TableField(value = "description")
-    @ApiModelProperty(value = "Description of the role", example = "Administrator role with full permissions")
-    private String description;
 
     public Role() {
     }
@@ -33,13 +29,5 @@ public class Role extends BaseEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

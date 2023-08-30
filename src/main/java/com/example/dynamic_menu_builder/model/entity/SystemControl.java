@@ -9,19 +9,19 @@ import io.swagger.annotations.ApiModelProperty;
  * system entity
  */
 
-@TableName("t_system_status")
-@ApiModel(value = "System Status", description = "System Status entity")
-public class SystemStatus extends BaseEntity{
+@TableName("t_system_control")
+@ApiModel(value = "System Control", description = "System Control entity")
+public class SystemControl extends BaseEntity{
 
     @TableField(value = "name")
-    @ApiModelProperty(value = "Name of the system status", example = "SYSTEM_CONTROL_1")
+    @ApiModelProperty(value = "Name of the system control", example = "SYSTEM_CONTROL_1")
     private String name;
 
     @TableField(value = "status")
     @ApiModelProperty(value = "Status of the system", example = "true")
     private Boolean status;
 
-    public SystemStatus() {
+    public SystemControl() {
     }
 
     public String getName() {
