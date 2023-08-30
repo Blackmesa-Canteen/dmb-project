@@ -1,0 +1,30 @@
+# Gradle files
+.gradle/
+gradlew
+gradlew.bat
+gradle/
+
+# Source directories
+src/
+
+# IDE files
+.idea/
+*.iml
+*.iws
+
+# Temporary files
+*.swp
+*.swo
+*.tmp
+
+# Build directories
+build/
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# OS generated files
+.DS_Store
+Thumbs.db
