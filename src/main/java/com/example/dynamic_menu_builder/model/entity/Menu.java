@@ -28,9 +28,9 @@ public class Menu extends BaseEntity {
     @ApiModelProperty(value = "Permission required to view menu", example = "PERMISSION_6")
     private String permissionNameRequired;
 
-    @TableField(value = "system_name_required")
-    @ApiModelProperty(value = "System status dependency for the menu", example = "SYSTEM_CONTROL_2")
-    private String systemNameRequired;
+    @TableField(value = "system_status_name_required")
+    @ApiModelProperty(value = "System status name for the menu", example = "SYSTEM_CONTROL_2")
+    private String systemStatusNameRequired;
 
     public Menu() {
     }
@@ -72,11 +72,11 @@ public class Menu extends BaseEntity {
         this.permissionNameRequired = permissionNameRequired;
     }
 
-    public String getSystemNameRequired() {
-        return systemNameRequired;
+    public String getSystemStatusNameRequired() {
+        return systemStatusNameRequired;
     }
 
-    public void setSystemNameRequired(String systemNameRequired) {
-        this.systemNameRequired = systemNameRequired;
+    public void setSystemStatusNameRequired(String systemStatusNameRequired) {
+        this.systemStatusNameRequired = systemStatusNameRequired;
     }
 }
