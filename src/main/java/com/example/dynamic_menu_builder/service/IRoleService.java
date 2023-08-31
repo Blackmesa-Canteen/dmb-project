@@ -38,4 +38,11 @@ public interface IRoleService extends IService<Role> {
      * @param permissionList permission list
      */
     void disableRolePermission(Long roleId, List<String> permissionList);
+
+    /**
+     * get role permissions by role id
+     * @param roleId role id
+     * @return role permissions
+     */
+    List<String> getRolePermissionsByRoleId(Long roleId);
 }

@@ -41,6 +41,18 @@ public class RoleController {
     }
 
     /**
+     * get role permissions by role id
+     */
+    @GetMapping("/{id}/permissions")
+    @ApiOperation(value = "Get role permission names by role id")
+    @ApiResponse(code = 200, message = "Example response: {'code': 200, 'msg': 'ok', 'data': [...]}")
+    public R getRolePermissionsByRoleId(@PathVariable(value = "id") Long id) {
+        List<String> permissions = roleService.getRolePermissionsByRoleId(id);
+        return R.ok().put("data", permissions);
+    }
+
+
+    /**
      * list all roles by page
      *
      * @param page page number

@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleService {
@@ -109,5 +110,31 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
 
             rolePermissionMapper.deleteBatchIds(rolePermissions);
         }
+    }
+
+    @Override
+    public List<String> getRolePermissionsByRoleId(Long roleId) {
+        // check if role exists
+        Role role = roleMapper.selectById(roleId);
+        if (role == null) {
+            throw new RuntimeException("Role ID not exists: " + roleId);
+        }
+
+        QueryWrapper<RolePermission> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("role_id", roleId);
+        List<RolePermission> rolePermissions = rolePermissionMapper.selectList(queryWrapper);
+
+        // get permission Ids
+        List<Long> permissionIds = rolePermissions.stream()
+                .map(RolePermission::getPermissionId)
+                .collect(Collectors.toList());
+
+        // get permissions based on permission Ids
+        List<Permission> permissions = permissionMapper.selectBatchIds(permissionIds);
+
+        // return permission names
+        return permissions.stream()
+                .map(Permission::getName)
+                .collect(Collectors.toList());
     }
 }
