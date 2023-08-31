@@ -19,11 +19,11 @@ public abstract class BaseEntity implements Serializable {
 
     @TableField(value = "created_at", fill = FieldFill.INSERT)
     @ApiModelProperty(value = "created_at", example = "2020-01-01 00:00:00")
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @TableField(value = "updated_at", fill = FieldFill.INSERT_UPDATE)
     @ApiModelProperty(value = "updated_at", example = "2020-01-01 00:00:00")
-    private LocalDateTime updatedAt;
+    private LocalDateTime updatedAt = LocalDateTime.now();
 
     public BaseEntity() {
     }

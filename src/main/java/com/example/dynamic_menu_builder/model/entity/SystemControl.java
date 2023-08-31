@@ -24,6 +24,11 @@ public class SystemControl extends BaseEntity{
     public SystemControl() {
     }
 
+    public SystemControl(String name, Boolean status) {
+        this.name = name;
+        this.status = status;
+    }
+
     public String getName() {
         return name;
     }

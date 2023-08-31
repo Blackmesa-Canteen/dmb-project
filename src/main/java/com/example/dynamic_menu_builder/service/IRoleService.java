@@ -24,4 +24,18 @@ public interface IRoleService extends IService<Role> {
      * @since 08/30/2023
      */
     void crateRoleByNameBatch(List<String> names);
+
+    /**
+     * enable role permission
+     * @param roleId role id
+     * @param permissionList permission list
+     */
+    void enableRolePermission(Long roleId, List<String> permissionList);
+
+    /**
+     * disable role permission
+     * @param roleId role id
+     * @param permissionList permission list
+     */
+    void disableRolePermission(Long roleId, List<String> permissionList);
 }

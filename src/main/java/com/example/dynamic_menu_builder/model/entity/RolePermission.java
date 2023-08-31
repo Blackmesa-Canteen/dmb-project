@@ -20,6 +20,11 @@ public class RolePermission extends BaseEntity {
     public RolePermission() {
     }
 
+    public RolePermission(Long roleId, Long permissionId) {
+        this.roleId = roleId;
+        this.permissionId = permissionId;
+    }
+
     public Long getRoleId() {
         return roleId;
     }

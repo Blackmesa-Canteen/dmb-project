@@ -6,6 +6,7 @@ import com.example.dynamic_menu_builder.model.dto.R;
 import com.example.dynamic_menu_builder.model.entity.Role;
 import com.example.dynamic_menu_builder.model.param.CreateRoleBatchParam;
 import com.example.dynamic_menu_builder.model.param.CreateRoleParam;
+import com.example.dynamic_menu_builder.model.param.ToggleRolePermissionParam;
 import com.example.dynamic_menu_builder.service.IRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -84,6 +85,33 @@ public class RoleController {
         roleService.crateRoleByNameBatch(param.getNames());
         return R.ok();
     }
+
+    /**
+     * enable role permission
+     */
+    @PutMapping("/permission/enable")
+    @ApiOperation(value = "Enable role permission")
+    @ApiResponse(code = 200, message = "OK", response = R.class)
+    public R enableRolePermission(
+            @Valid @RequestBody ToggleRolePermissionParam param
+    ) {
+        roleService.enableRolePermission(param.getRoleId(), param.getPermissionList());
+        return R.ok();
+    }
+
+    /**
+     * disable role permission
+     */
+    @PutMapping("/permission/disable")
+    @ApiOperation(value = "Disable role permission")
+    @ApiResponse(code = 200, message = "OK", response = R.class)
+    public R disableRolePermission(
+            @Valid @RequestBody ToggleRolePermissionParam param
+    ) {
+        roleService.disableRolePermission(param.getRoleId(), param.getPermissionList());
+        return R.ok();
+    }
+
 
     /**
      * delete role by id
