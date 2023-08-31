@@ -75,7 +75,7 @@ public class MenuController {
     /**
      * query menu structure by role id
      */
-    @GetMapping("/structure/{roleId}")
+    @GetMapping("/structure/role/{roleId}")
     @ApiOperation(value = "Query menu structure by role id")
     @ApiResponse(code = 200,
             message = "Example response: {'code': 200, 'msg': 'ok', 'data': {...}}",
