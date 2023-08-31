@@ -101,7 +101,7 @@ public class RoleController {
     /**
      * enable role permission
      */
-    @PutMapping("/permission/enable")
+    @PutMapping("/permissions/enable")
     @ApiOperation(value = "Enable role permission")
     @ApiResponse(code = 200, message = "OK", response = R.class)
     public R enableRolePermission(
@@ -114,7 +114,7 @@ public class RoleController {
     /**
      * disable role permission
      */
-    @PutMapping("/permission/disable")
+    @PutMapping("/permissions/disable")
     @ApiOperation(value = "Disable role permission")
     @ApiResponse(code = 200, message = "OK", response = R.class)
     public R disableRolePermission(

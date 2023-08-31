@@ -5,7 +5,9 @@ import com.example.dynamic_menu_builder.model.dto.R;
 import com.example.dynamic_menu_builder.model.entity.Permission;
 import com.example.dynamic_menu_builder.model.param.CreatePermissionBatchParam;
 import com.example.dynamic_menu_builder.model.param.CreatePermissionParam;
+import com.example.dynamic_menu_builder.model.param.ToggleRolePermissionParam;
 import com.example.dynamic_menu_builder.service.IPermissionService;
+import com.example.dynamic_menu_builder.service.IRoleService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -23,8 +25,11 @@ public class PermissionController {
 
     private final IPermissionService permissionService;
 
-    public PermissionController(IPermissionService permissionService) {
+    private final IRoleService roleService;
+
+    public PermissionController(IPermissionService permissionService, IRoleService roleService) {
         this.permissionService = permissionService;
+        this.roleService = roleService;
     }
 
     /**
@@ -54,6 +59,43 @@ public class PermissionController {
                 .getRecords();
 
         return R.ok().put("data", records);
+    }
+
+    /**
+     * get role permissions by role id
+     */
+    @GetMapping("/batch/role/{roleId}")
+    @ApiOperation(value = "Get role permission names by role id")
+    @ApiResponse(code = 200, message = "Example response: {'code': 200, 'msg': 'ok', 'data': [...]}")
+    public R getRolePermissionsByRoleId(@PathVariable(value = "roleId") Long id) {
+        List<String> permissions = roleService.getRolePermissionsByRoleId(id);
+        return R.ok().put("data", permissions);
+    }
+
+    /**
+     * enable role permission
+     */
+    @PutMapping("/batch/enable")
+    @ApiOperation(value = "Enable role permissions")
+    @ApiResponse(code = 200, message = "OK", response = R.class)
+    public R enableRolePermission(
+            @Valid @RequestBody ToggleRolePermissionParam param
+    ) {
+        roleService.enableRolePermission(param.getRoleId(), param.getPermissionList());
+        return R.ok();
+    }
+
+    /**
+     * disable role permission
+     */
+    @PutMapping("/batch/disable")
+    @ApiOperation(value = "Disable role permissions")
+    @ApiResponse(code = 200, message = "OK", response = R.class)
+    public R disableRolePermission(
+            @Valid @RequestBody ToggleRolePermissionParam param
+    ) {
+        roleService.disableRolePermission(param.getRoleId(), param.getPermissionList());
+        return R.ok();
     }
 
     /**

@@ -75,7 +75,9 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
 
             // add the permission to associated table if not exists
             QueryWrapper<RolePermission> rolePermissionQueryWrapper = new QueryWrapper<>();
-            rolePermissionQueryWrapper.eq("role_id", roleId);
+            rolePermissionQueryWrapper
+                    .eq("role_id", roleId)
+                    .and(wrapper -> wrapper.eq("permission_id", permission.getId()));
             boolean exists = rolePermissionMapper.exists(rolePermissionQueryWrapper);
             if (!exists) {
                 // no need to use batch insert because the service is transactional already
@@ -104,8 +106,9 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
 
             // delete the permission from associated table if exists
             QueryWrapper<RolePermission> rolePermissionQueryWrapper = new QueryWrapper<>();
-            rolePermissionQueryWrapper.eq("role_id", roleId);
-            rolePermissionQueryWrapper.eq("permission_id", permission.getId());
+            rolePermissionQueryWrapper
+                    .eq("role_id", roleId)
+                    .and(wrapper -> wrapper.eq("permission_id", permission.getId()));
             List<RolePermission> rolePermissions = rolePermissionMapper.selectList(rolePermissionQueryWrapper);
 
             rolePermissionMapper.deleteBatchIds(rolePermissions);

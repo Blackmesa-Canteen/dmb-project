@@ -31,6 +31,13 @@ public class Menu extends BaseEntity {
     public Menu() {
     }
 
+    public Menu(String name, Long parentId, String permissionNameRequired, String systemControlNameRequired) {
+        this.name = name;
+        this.parentId = parentId;
+        this.permissionNameRequired = permissionNameRequired;
+        this.systemControlNameRequired = systemControlNameRequired;
+    }
+
     public Menu(String name) {
         this.name = name;
     }

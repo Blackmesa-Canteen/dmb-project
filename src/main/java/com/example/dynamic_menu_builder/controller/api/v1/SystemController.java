@@ -69,9 +69,9 @@ public class SystemController {
     }
 
     /**
-     * toggle system control status
+     * batch toggle system control status
      */
-    @PutMapping("/")
+    @PutMapping("/batch")
     @ApiOperation(value = "Toggle system control status", notes = "Toggle system control status")
     @ApiResponse(code = 200, message = "OK", response = R.class)
     public R toggleSystemControlStatus(
