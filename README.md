@@ -38,5 +38,9 @@ By default, all systems are disabled. To enable a system, go to **System Control
 ### 5. Generate Menu Structure for the role: 
 Go to **Menu** section, go to **GET /api/v1/menu/structure/{roleId}** and click on **Try it out**, configure the roleId parameter and click on **Execute** to get the menu structure for the roleId;
 
+## Live Demo
+A live demo is available at `https://test.996workers.icu/`.
+API documentation is available at `https://test.996workers.icu/swagger-ui/index.html`.
+
 ## License
 [MIT](https://github.com/Blackmesa-Canteen/dmb-project/blob/master/LICENSE)
