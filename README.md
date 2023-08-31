@@ -1,5 +1,9 @@
 ## Description
-Backend application with REST API. Deployed with one-click Docker Compose.
+Backend application with RESTful API. 
+
+Java Spring Boot + MyBatis + Postgres SQL. 
+
+Deployed with one-click Docker Compose.
 
 ## Deployment
 
@@ -12,6 +16,7 @@ Backend application with REST API. Deployed with one-click Docker Compose.
 1. The database will have initial seed data based on the **Menu Rendering Table** from the requirement document;
 2. For initial System Control data, all status are false;
 3. There is no initial role. User should create a role and enable permissions for the role before generating menu structure;
+4. CORS is enabled for all origins, methods and headers.
 
 ## Usage
 We are using Swagger for API documentation, where the user can also interact with backend. To interact with backend, follow the steps below:
@@ -32,3 +37,6 @@ By default, all systems are disabled. To enable a system, go to **System Control
 
 ### 5. Generate Menu Structure for the role: 
 Go to **Menu** section, go to **GET /api/v1/menu/structure/{roleId}** and click on **Try it out**, configure the roleId parameter and click on **Execute** to get the menu structure for the roleId;
+
+## License
+[MIT](https://github.com/Blackmesa-Canteen/dmb-project/blob/master/LICENSE)
