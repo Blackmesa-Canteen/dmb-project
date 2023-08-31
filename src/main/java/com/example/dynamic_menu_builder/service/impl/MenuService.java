@@ -2,6 +2,9 @@ package com.example.dynamic_menu_builder.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.dynamic_menu_builder.exception.BadRequestException;
+import com.example.dynamic_menu_builder.exception.DuplicatedDataException;
+import com.example.dynamic_menu_builder.exception.NotFoundException;
 import com.example.dynamic_menu_builder.mapper.*;
 import com.example.dynamic_menu_builder.model.dto.MenuDTO;
 import com.example.dynamic_menu_builder.model.dto.SubMenuDTO;
@@ -40,7 +43,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
         // so permission name required and system control name required should be null
         if (parentMenuName == null) {
             if (permissionNameRequired != null || systemControlNameRequired != null) {
-                throw new RuntimeException(
+                throw new BadRequestException(
                         "Root menu should not have permission name required or system control name required"
                 );
             }
@@ -51,7 +54,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
         queryWrapper.eq("name", name);
         boolean exists = menuMapper.exists(queryWrapper);
         if (exists) {
-            throw new RuntimeException("Menu name already exists");
+            throw new DuplicatedDataException("Menu name already exists");
         }
 
         // check if permission name exists
@@ -60,7 +63,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
             queryWrapper.eq("name", permissionNameRequired);
             exists = menuMapper.exists(queryWrapper);
             if (!exists) {
-                throw new RuntimeException("Permission name not found: " + permissionNameRequired);
+                throw new NotFoundException("Permission name not found: " + permissionNameRequired);
             }
         }
 
@@ -70,7 +73,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
             queryWrapper.eq("name", systemControlNameRequired);
             exists = menuMapper.exists(queryWrapper);
             if (!exists) {
-                throw new RuntimeException("System control name not found: " + systemControlNameRequired);
+                throw new NotFoundException("System control name not found: " + systemControlNameRequired);
             }
         }
 
@@ -81,7 +84,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
             queryWrapper.eq("name", parentMenuName);
             Menu menu = menuMapper.selectOne(queryWrapper);
             if (menu == null) {
-                throw new RuntimeException("Parent menu name not found: " + parentMenuName);
+                throw new NotFoundException("Parent menu name not found: " + parentMenuName);
             }
             parentMenuId = menu.getId();
         }
@@ -95,7 +98,7 @@ public class MenuService extends ServiceImpl<MenuMapper, Menu> implements IMenuS
         // check role exists
         Role role = roleMapper.selectById(roleId);
         if (role == null) {
-            throw new RuntimeException("Role not found: " + roleId);
+            throw new NotFoundException("Role not found: " + roleId);
         }
 
         // get permission names of the role

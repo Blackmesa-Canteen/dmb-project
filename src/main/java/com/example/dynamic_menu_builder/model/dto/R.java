@@ -2,6 +2,8 @@ package com.example.dynamic_menu_builder.model.dto;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.TypeReference;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import org.springframework.http.HttpStatus;
 
 import java.util.HashMap;
@@ -12,12 +14,21 @@ import java.util.Map;
  *
  * @since 2020-05-15 10:46
  */
+
+@ApiModel(description = "Response object")
 public class R extends HashMap<String, Object> {
 
     private static final long serialVersionUID = 1L;
     public static final String MSG = "msg";
     public static final String CODE = "code";
     public static final String DATA = "data";
+
+    @ApiModelProperty(value = "Response code", example = "200")
+    public Integer code;
+    @ApiModelProperty(value = "Response message", example = "ok")
+    public String msg;
+    @ApiModelProperty(value = "Response data", example = "{...} or [...]")
+    public Object data;
 
     public R() {
         // default is 200 - ok

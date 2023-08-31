@@ -32,6 +32,7 @@ public class MenuController {
      */
     @GetMapping("/{id}")
     @ApiOperation(value = "Get menu by id")
+    @ApiResponse(code = 200, message = "OK", response = R.class)
     public R getMenuById(@PathVariable(value = "id") Long id) {
         Menu menu = menuService.getById(id);
         return R.ok().put("data", menu);

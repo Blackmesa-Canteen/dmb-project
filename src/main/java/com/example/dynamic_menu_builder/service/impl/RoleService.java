@@ -2,7 +2,9 @@ package com.example.dynamic_menu_builder.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.dynamic_menu_builder.exception.BadRequestException;
 import com.example.dynamic_menu_builder.exception.DuplicatedDataException;
+import com.example.dynamic_menu_builder.exception.NotFoundException;
 import com.example.dynamic_menu_builder.mapper.PermissionMapper;
 import com.example.dynamic_menu_builder.mapper.RoleMapper;
 import com.example.dynamic_menu_builder.mapper.RolePermissionMapper;
@@ -61,7 +63,7 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
         // check if role exists
         Role role = roleMapper.selectById(roleId);
         if (role == null) {
-            throw new RuntimeException("Role ID not exists: " + roleId);
+            throw new BadRequestException("Role ID not exists: " + roleId);
         }
 
         for (String permissionName : permissionList) {
@@ -70,7 +72,7 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
             queryWrapper.eq("name", permissionName);
             Permission permission = permissionMapper.selectOne(queryWrapper);
             if (permission == null) {
-                throw new RuntimeException("Permission name not exists: " + permissionName);
+                throw new NotFoundException("Permission name not exists: " + permissionName);
             }
 
             // add the permission to associated table if not exists
@@ -92,7 +94,7 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
         // check if role exists
         Role role = roleMapper.selectById(roleId);
         if (role == null) {
-            throw new RuntimeException("Role ID not exists: " + roleId);
+            throw new NotFoundException("Role ID not exists: " + roleId);
         }
 
         for (String permissionName : permissionList) {
@@ -101,7 +103,7 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
             queryWrapper.eq("name", permissionName);
             Permission permission = permissionMapper.selectOne(queryWrapper);
             if (permission == null) {
-                throw new RuntimeException("Permission name not exists: " + permissionName);
+                throw new NotFoundException("Permission name not exists: " + permissionName);
             }
 
             // delete the permission from associated table if exists
@@ -120,7 +122,7 @@ public class RoleService extends ServiceImpl<RoleMapper, Role> implements IRoleS
         // check if role exists
         Role role = roleMapper.selectById(roleId);
         if (role == null) {
-            throw new RuntimeException("Role ID not exists: " + roleId);
+            throw new NotFoundException("Role ID not exists: " + roleId);
         }
 
         QueryWrapper<RolePermission> queryWrapper = new QueryWrapper<>();

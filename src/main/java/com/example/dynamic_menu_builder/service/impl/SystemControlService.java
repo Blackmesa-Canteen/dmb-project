@@ -2,6 +2,7 @@ package com.example.dynamic_menu_builder.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.example.dynamic_menu_builder.exception.NotFoundException;
 import com.example.dynamic_menu_builder.mapper.SystemControlMapper;
 import com.example.dynamic_menu_builder.model.entity.SystemControl;
 import com.example.dynamic_menu_builder.service.ISystemControlService;
@@ -36,7 +37,7 @@ public class SystemControlService extends ServiceImpl<SystemControlMapper, Syste
             queryWrapper.eq("name", name);
             SystemControl systemControl = systemControlMapper.selectOne(queryWrapper);
             if (systemControl == null) {
-                throw new RuntimeException("System control name not found: " + name);
+                throw new NotFoundException("System control name not found: " + name);
             }
 
             systemControl.setStatus(status);

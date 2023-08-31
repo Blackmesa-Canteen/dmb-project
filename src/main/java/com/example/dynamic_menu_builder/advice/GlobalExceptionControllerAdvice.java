@@ -49,10 +49,9 @@ public class GlobalExceptionControllerAdvice {
      */
     @ExceptionHandler(value = BaseException.class)
     public R handleException(BaseException ex) {
-        LOGGER.error(ex.getMsg(), ex);
+        LOGGER.error(ex.getMsg());
         return R.error(
-                ex.getCode(), ex.getMsg()).setData(ExceptionUtils.getStackTrace(ex)
-        );
+                ex.getCode(), ex.getMsg());
     }
 
     /**

@@ -12,7 +12,7 @@ import java.util.Map;
 public class ToggleSystemControlParam {
 
     @ApiModelProperty(value = "System name-status map", required = true,
-            example = "{\"SYSTEM_CONTROL_3\":true,\"SYSTEM_CONTROL_6\":false}")
+            example = "{\"SYSTEM_CONTROL_3\":true,\"SYSTEM_CONTROL_6\":false,\"SYSTEM_CONTROL_8\":true}")
     @NotNull(message = "system name-status map cannot be null")
     Map<String, Boolean> systemStatus;
 

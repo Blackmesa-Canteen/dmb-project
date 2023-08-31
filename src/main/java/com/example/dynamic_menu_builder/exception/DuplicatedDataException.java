@@ -7,6 +7,6 @@ import org.springframework.http.HttpStatus;
  */
 public class DuplicatedDataException extends BaseException {
     public DuplicatedDataException(String message) {
-        super(message, HttpStatus.BAD_GATEWAY.value());
+        super(message, HttpStatus.BAD_REQUEST.value());
     }
 }

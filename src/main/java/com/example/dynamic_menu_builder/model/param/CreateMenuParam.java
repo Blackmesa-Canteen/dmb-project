@@ -8,11 +8,12 @@ import javax.validation.constraints.NotNull;
 @ApiModel(description = "Parameters required for creating a menu.")
 public class CreateMenuParam {
 
-    @ApiModelProperty(value = "Name of the menu", required = true, example = "MENU_1")
+    @ApiModelProperty(value = "Name of the menu", required = true, example = "menu_1")
     @NotNull(message = "menu name cannot be null")
     String name;
 
-    @ApiModelProperty(value = "Name of the parent menu", required = false, example = "MENU_1")
+    @ApiModelProperty(value = "Name of the parent menu, can be null if root menu",
+            required = false, example = "menu_1")
     String parentName;
 
     @ApiModelProperty(value = "Name of the permission required to access this menu",
