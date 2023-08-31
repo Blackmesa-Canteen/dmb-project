@@ -32,10 +32,13 @@ dependencies {
     implementation 'com.alibaba:fastjson:1.2.83'
 }
 
-
-bootJar {
-    archiveBaseName = 'dynamic_menu_builder'
-    archiveVersion = '0.0.1-SNAPSHOT'
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.runtimeClasspath.files.collect { it.getName() }.join(' '),
+                'Main-Class': 'com.example.dynamic_menu_builder.DynamicMenuBuilderApplication'
+        )
+    }
 }
 
 tasks.named('test') {
