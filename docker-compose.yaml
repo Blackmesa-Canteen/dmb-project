@@ -3,6 +3,8 @@ version: '3.1'
 services:
   app:
     image: dynamic_menu_builder_api
+    env_file:
+      - .env.compose
     build:
       context: .
       dockerfile: Dockerfile
