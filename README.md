@@ -42,8 +42,8 @@ Go to **Menu** section, go to **GET /api/v1/menu/structure/role/{roleId}** and c
 If deployed with docker compose locally, the database is exposed at port 5432. The credentials are in .env file.
 
 ## Live Demo
-A live demo is available at `https://dmb.996workers.icu/`.
-API documentation is available at `https://dmb.996workers.icu/swagger-ui/index.html`.
+A live demo is available at `http://dmb.996workers.icu:8080`.
+API documentation is available at `http://dmb.996workers.icu:8080/swagger-ui/index.html`.
 Database is not exposed.
 
 ## License
