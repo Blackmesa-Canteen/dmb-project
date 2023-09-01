@@ -1,6 +1,6 @@
 package com.example.dynamic_menu_builder.advice;
 
-import com.example.dynamic_menu_builder.exception.BaseException;
+import com.example.dynamic_menu_builder.exception.*;
 import com.example.dynamic_menu_builder.model.dto.R;
 import com.example.dynamic_menu_builder.util.ExceptionUtils;
 import org.hibernate.validator.internal.engine.path.PathImpl;
@@ -43,11 +43,56 @@ public class GlobalExceptionControllerAdvice {
     }
 
     /**
+     * handles Bad Request exception
+     */
+    @ExceptionHandler(value = BadRequestException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public R handleBadRequestException(BadRequestException ex){
+        LOGGER.error(ex.getMsg());
+        return R.error(
+                ex.getCode(), ex.getMsg());
+    }
+
+    /**
+     * handles Duplicate Data exception
+     */
+    @ExceptionHandler(value = DuplicatedDataException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public R handleDuplicatedDataException(DuplicatedDataException ex){
+        LOGGER.error(ex.getMsg());
+        return R.error(
+                ex.getCode(), ex.getMsg());
+    }
+
+    /**
+     * handles Not Found exception
+     */
+    @ExceptionHandler(value = NotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public R handleNotFoundException(NotFoundException ex){
+        LOGGER.error(ex.getMsg());
+        return R.error(
+                ex.getCode(), ex.getMsg());
+    }
+
+    /**
+     * handles NotImplementedException
+     */
+    @ExceptionHandler(value = NotImplementedException.class)
+    @ResponseStatus(HttpStatus.NOT_IMPLEMENTED)
+    public R handleNotImplementedException(NotImplementedException ex){
+        LOGGER.error(ex.getMsg());
+        return R.error(
+                ex.getCode(), ex.getMsg());
+    }
+
+    /**
      * handles defined exception
      * @param ex the exception
      * @return Response
      */
     @ExceptionHandler(value = BaseException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public R handleException(BaseException ex) {
         LOGGER.error(ex.getMsg());
         return R.error(
