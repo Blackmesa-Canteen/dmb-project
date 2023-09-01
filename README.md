@@ -11,7 +11,7 @@ Deployed with one-click Docker Compose.
 2. Clone this repository;
 3. In the repository directory, run ` docker compose up`;
 4. Access the application at `http://localhost:8080/`. For API doc, go to `http://localhost:8080/swagger-ui/index.html`.
-5. Live demo is available, please refer to [Live Demo Section](##Live-Demo)
+5. Live demo is available, read more at [Live Demo Section](#Live-Demo) in this readme doc.
 
 **Note:**
 1. The database will have initial seed data based on the **Menu Rendering Table** from the requirement document;
@@ -44,7 +44,9 @@ If deployed with docker compose locally, the database is exposed at port 5432. T
 
 ## Live Demo
 A live demo is available at `http://dmb.996workers.icu:8080`.
+
 API documentation is available at `http://dmb.996workers.icu:8080/swagger-ui/index.html`.
+
 Database is not exposed.
 
 ## License
